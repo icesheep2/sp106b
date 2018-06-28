@@ -1,5 +1,7 @@
 var fs = require('fs');
 var file =  process.argv[2];   
+var output = file+".hack"
+file = file+".asm"
 
 var d = {
   ""   :"000",
@@ -104,7 +106,7 @@ r2.on('line', (line2) => {
   } 
 });
 
-fs.writeFile("fuck.txt","" , function(err){
+fs.writeFile(output,"" , function(err){
 })
 
 rl.on('line', (line) => {             //讀取每一行並執行
@@ -112,11 +114,11 @@ if(line[0]=="@"){
   var sliceline = line.slice(1)
   if(isNaN(line[1])==false){
     console.log(enter0(dec2bin(parseInt(line.slice(1))))) 
-    fs.appendFile("fuck.txt",enter0(dec2bin(parseInt(line.slice(1))))+"\n" , function(err){})
+    fs.appendFile(output,enter0(dec2bin(parseInt(line.slice(1))))+"\n" , function(err){})
   }
   else if (dic[sliceline]!=undefined){ //遮蔽第一位元
     console.log(enter0(dec2bin(dic[sliceline])))
-    fs.appendFile("fuck.txt",enter0(dec2bin(dic[sliceline]))+"\n" , function(err){})
+    fs.appendFile(output,enter0(dec2bin(dic[sliceline]))+"\n" , function(err){})
   }
   else if(line[0]!='('){
     var L =line.slice(1)
@@ -125,12 +127,12 @@ if(line[0]=="@"){
     do{
       if(L==temparray1[icount]){
         console.log(enter0(dec2bin(temparray2[icount])))
-        fs.appendFile("fuck.txt",enter0(dec2bin(temparray2[icount]))+"\n" , function(err){})
+        fs.appendFile(output,enter0(dec2bin(temparray2[icount]))+"\n" , function(err){})
         ended=1
       }
       else if(temparray1[icount]=="none"){
         console.log(enter0(dec2bin(asb)))
-        fs.appendFile("fuck.txt",enter0(dec2bin(asb))+"\n" , function(err){})
+        fs.appendFile(output,enter0(dec2bin(asb))+"\n" , function(err){})
         asb++
         ended=1
       }
@@ -145,14 +147,14 @@ else {
        x = line.slice(0,i)
        y = line.slice(i+1)
        console.log("111"+c[x]+"000"+jjj[y])
-       fs.appendFile("fuck.txt","111"+c[x]+"000"+jjj[y]+"\n" , function(err){})
+       fs.appendFile(output,"111"+c[x]+"000"+jjj[y]+"\n" , function(err){})
     break
     }
     else if (line[i]=='='){
       x = line.slice(0,i)
       y = line.slice(i+1)
       console.log("111"+c[y]+d[x]+"000")
-      fs.appendFile("fuck.txt","111"+c[y]+d[x]+"000"+"\n" , function(err){})
+      fs.appendFile(output,"111"+c[y]+d[x]+"000"+"\n" , function(err){})
    break
     }
   }
